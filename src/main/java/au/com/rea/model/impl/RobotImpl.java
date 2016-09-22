@@ -1,5 +1,6 @@
 package au.com.rea.model.impl;
 
+import au.com.rea.model.Position;
 import au.com.rea.model.Robot;
 
 /**
@@ -8,41 +9,62 @@ import au.com.rea.model.Robot;
  *
  */
 public class RobotImpl implements Robot {
-	
+	private int id = 0;
+	private Position position = null;
+
+	/**
+	 * default constructor requires the position (x, y) coordinate and the orientation
+	 * robot requires to have an identifier and a position
+	 * 
+	 * @param id
+	 * @param position
+	 */
+	public RobotImpl(int id, Position position) {
+		this.id = id;
+		this.position = position;
+	}
+
 	@Override
-	public void place(int x, int y, RobotDirection robotDirection) {
-		System.out.println("WALL-E says: ");
-		
-		// TODO Auto-generated method stub
-		
+	/**
+	 * a setter for position object
+	 * 
+	 * @param position
+	 */
+	public void place(Position position) {
+		this.position = position;
 	}
 
 	@Override
 	public void moveForward() {
-		System.out.println("WALL-E says: \"moving forward.\"");
-		// TODO Auto-generated method stub
-		
+		//TODO
 	}
 
 	@Override
 	public void turnRight() {
-		System.out.println("WALL-E says: \"turning right.\"");
-		// TODO Auto-generated method stub
-		
+		//TODO		
 	}
 
 	@Override
 	public void turnLeft() {
-		System.out.println("WALL-E says: \"turning left.\"");
-		// TODO Auto-generated method stub
-		
+		//TODO
 	}
 
 	@Override
 	public void reportStatus() {
-		String status = "";
-		// TODO Auto-generated method stub
-		System.out.println("WALL-E says: \"" + status + " .\"");
+		System.out.println("WALL-E says: \"I am at (" + position.getX() + ", " + position.getY() + ") facing " + position.getOrientation() + ".\"");
 	}
 
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	/**
+	 * 
+	 * @return Position
+	 */
+	public Position getPosition() {
+		return position;
+	}
 }
