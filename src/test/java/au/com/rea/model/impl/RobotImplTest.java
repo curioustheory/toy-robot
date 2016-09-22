@@ -48,7 +48,16 @@ public class RobotImplTest {
 
 	@Test
 	public void testReportStatus() {
-		fail("Not yet implemented");
+		assert robot.reportStatus().equals("WALL-E says: \"I am at (0, 0) facing NORTH.\"");
+		
+		Position newPosition = new Position(2, 1, Orientation.EAST);
+		robot.place(newPosition);
+
+		assert robot.reportStatus().equals("WALL-E says: \"I am at (2, 1) facing EAST.\"");
 	}
 
+	@Test
+	public void testBoundary() {
+		fail("Not yet implemented");
+	}
 }
