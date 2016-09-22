@@ -33,17 +33,119 @@ public class RobotImplTest {
 
 	@Test
 	public void testMoveForward() {
-		fail("Not yet implemented");
+		// test east
+		Position newPosition = new Position(3, 3, Orientation.EAST);
+		robot.place(newPosition);
+		robot.moveForward();
+		
+		assert robot.getPosition().getX() == 4;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.EAST;
+
+		// test north
+		newPosition = new Position(3, 3, Orientation.NORTH);
+		robot.place(newPosition);
+		robot.moveForward();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 4;
+		assert robot.getPosition().getOrientation() == Orientation.NORTH;
+
+		// test west
+		newPosition = new Position(3, 3, Orientation.WEST);
+		robot.place(newPosition);
+		robot.moveForward();
+		
+		assert robot.getPosition().getX() == 2;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.WEST;
+
+		// test south
+		newPosition = new Position(3, 3, Orientation.SOUTH);
+		robot.place(newPosition);
+		robot.moveForward();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 2;
+		assert robot.getPosition().getOrientation() == Orientation.SOUTH;
 	}
 
 	@Test
 	public void testTurnRight() {
-		fail("Not yet implemented");
+		// test east
+		Position newPosition = new Position(3, 3, Orientation.EAST);
+		robot.place(newPosition);
+		robot.turnRight();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.SOUTH;
+
+		// test north
+		newPosition = new Position(3, 3, Orientation.NORTH);
+		robot.place(newPosition);
+		robot.turnRight();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.EAST;
+
+		// test west
+		newPosition = new Position(3, 3, Orientation.WEST);
+		robot.place(newPosition);
+		robot.turnRight();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.NORTH;
+
+		// test south
+		newPosition = new Position(3, 3, Orientation.SOUTH);
+		robot.place(newPosition);
+		robot.turnRight();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.WEST;
 	}
 
 	@Test
 	public void testTurnLeft() {
-		fail("Not yet implemented");
+		// test east
+		Position newPosition = new Position(3, 3, Orientation.EAST);
+		robot.place(newPosition);
+		robot.turnLeft();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.NORTH;
+
+		// test north
+		newPosition = new Position(3, 3, Orientation.NORTH);
+		robot.place(newPosition);
+		robot.turnLeft();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.WEST;
+
+		// test west
+		newPosition = new Position(3, 3, Orientation.WEST);
+		robot.place(newPosition);
+		robot.turnLeft();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.SOUTH;
+
+		// test south
+		newPosition = new Position(3, 3, Orientation.SOUTH);
+		robot.place(newPosition);
+		robot.turnLeft();
+		
+		assert robot.getPosition().getX() == 3;
+		assert robot.getPosition().getY() == 3;
+		assert robot.getPosition().getOrientation() == Orientation.EAST;
 	}
 
 	@Test
@@ -55,9 +157,10 @@ public class RobotImplTest {
 
 		assert robot.reportStatus().equals("WALL-E says: \"I am at (2, 1) facing EAST.\"");
 	}
-
+	
 	@Test
 	public void testBoundary() {
 		fail("Not yet implemented");
 	}
+
 }
