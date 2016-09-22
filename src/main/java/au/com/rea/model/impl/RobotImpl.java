@@ -50,8 +50,8 @@ public class RobotImpl implements Robot {
 	}
 
 	@Override
-	public void reportStatus() {
-		System.out.println("WALL-E says: \"I am at (" + position.getX() + ", " + position.getY() + ") facing " + position.getOrientation() + ".\"");
+	public String reportStatus() {
+		return "WALL-E says: \"I am at (" + position.getX() + ", " + position.getY() + ") facing " + position.getOrientation() + ".\"";
 	}
 
 	@Override

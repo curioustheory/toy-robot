@@ -14,7 +14,7 @@ public interface Robot {
 
 	public void turnLeft();
 
-	public void reportStatus();
+	public String reportStatus();
 
 	public int getId();
 
