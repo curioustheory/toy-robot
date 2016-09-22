@@ -40,7 +40,7 @@ public class Position {
 	private Orientation orientation = Orientation.NORTH;
 
 	/**
-	 * default constructor that defines the position of the object on the table
+	 * constructor that defines the position of the object on the table
 	 * 
 	 * @param x
 	 * @param y
@@ -50,6 +50,15 @@ public class Position {
 		this.x = x;
 		this.y = y;
 		this.orientation = orientation;
+	}
+	
+	/**
+	 * default constructor that set the origin of the position as x = 0, y = 0, orientation = NORTH
+	 */
+	public Position() {
+		this.x = 0;
+		this.y = 0;
+		this.orientation = Orientation.NORTH;
 	}
 
 	public int getX() {
