@@ -7,7 +7,7 @@ import au.com.rea.model.Robot;
 import au.com.rea.model.TerrainData;
 
 /**
- * robot object that only has 1 move and 90 degree turn
+ * Robot object that only has step size of one move and 90 degree turn
  * 
  * @author Tony Wang
  *
@@ -21,11 +21,12 @@ public class RobotImpl implements Robot {
 	private TerrainData terrainData = null;
 
 	/**
-	 * default constructor requires the position (x, y) coordinate and the
-	 * orientation robot requires to have an identifier and a position
+	 * Default constructor requires the position (x, y) coordinate and the
+	 * orientation. Robot requires to have an identifier and the terrain data.
+	 * A default position will be created at the origin (0, 0, NORTH)
 	 * 
-	 * @param id
-	 * @param position
+	 * @param id to identify the robot
+	 * @param terrainData a terrain data so the robot knows their surrounding
 	 */
 	public RobotImpl(int id, TerrainData terrainData) {
 		this.id = id;
@@ -33,16 +34,17 @@ public class RobotImpl implements Robot {
 		this.terrainData = terrainData;
 	}
 
+	/**
+	 * Checks the terrain to see if the position is inside its boundary  
+	 *  
+	 * @param position defines the location and orientation of the robot
+	 * @return boolean true if the position is inside the terrain boundary
+	 */
 	private boolean isInBoundary(Position position) {
 		return position.getX() < terrainData.getWidth() && position.getY() < terrainData.getHeight() && position.getX() > 0 && position.getY() > 0;
 	}
 
 	@Override
-	/**
-	 * a setter for position object to update the position
-	 * 
-	 * @param position
-	 */
 	public void place(Position position) throws InvalidMovementException {
 		if (isInBoundary(position)) {
 			this.position = position;
@@ -52,9 +54,6 @@ public class RobotImpl implements Robot {
 	}
 
 	@Override
-	/**
-	 * moves the robot by one step
-	 */
 	public void moveForward() throws InvalidMovementException {
 		Position newPosition = null;
 		
@@ -76,47 +75,27 @@ public class RobotImpl implements Robot {
 	}
 
 	@Override
-	/**
-	 * turn the robot by 90 degrees to the right
-	 */
 	public void turnRight() {
 		position.setOrientation(Orientation.getInstance((position.getOrientation().getDegree() + TURNING_DEGREE) % CIRCLE));
 	}
 
 	@Override
-	/**
-	 * turn the robot by 90 degrees to the left
-	 */
 	public void turnLeft() {
-		// add 360 to offset the negative value because of counter clockwise
-		// rotation
+		// add 360 to offset the negative value because of counter clockwise rotation
 		position.setOrientation(Orientation.getInstance((position.getOrientation().getDegree() - TURNING_DEGREE + CIRCLE) % CIRCLE));
 	}
 
 	@Override
-	/**
-	 * returns a string that indicate the position
-	 * 
-	 * @returns String
-	 */
 	public String reportStatus() {
 		return "WALL-E says: \"I am at (" + position.getX() + ", " + position.getY() + ") facing " + position.getOrientation() + ".\"";
 	}
 
 	@Override
-	/**
-	 * get the robot id
-	 */
 	public int getId() {
 		return id;
 	}
 
 	@Override
-	/**
-	 * return the position object
-	 * 
-	 * @return Position
-	 */
 	public Position getPosition() {
 		return position;
 	}
