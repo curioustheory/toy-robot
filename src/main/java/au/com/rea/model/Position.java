@@ -131,4 +131,9 @@ public class Position {
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
+	
+	@Override
+	public String toString() {
+		return x + "," + y + "," + orientation;
+	}
 }
