@@ -13,6 +13,7 @@ public abstract class Robot {
 	protected int id = 0;
 	protected Position position = null;
 	protected TerrainData terrainData = null;
+	protected boolean placed = false;
 	
 	/**
 	 * A setter for position object to update the position, checks the boundary first
@@ -64,5 +65,9 @@ public abstract class Robot {
 	 */
 	public Position getPosition() {
 		return position;
+	}
+
+	public boolean isPlaced() {
+		return placed;
 	}
 }

@@ -26,9 +26,9 @@ public class RobotImpl extends Robot {
 	 * @param terrainData a terrain data so the robot knows their surrounding
 	 */
 	public RobotImpl(int id, TerrainData terrainData) {
-		super.id = id;
-		super.position = new Position();
-		super.terrainData = terrainData;
+		this.id = id;
+		this.position = new Position();
+		this.terrainData = terrainData;
 	}
 
 	/**
@@ -45,6 +45,7 @@ public class RobotImpl extends Robot {
 	public void place(Position position) throws InvalidMovementException {
 		if (isInBoundary(position)) {
 			this.position = position;
+			this.placed = true;
 		} else {
 			throw new InvalidMovementException("InvalidMovementException: Moving forward will result in death!");
 		}
