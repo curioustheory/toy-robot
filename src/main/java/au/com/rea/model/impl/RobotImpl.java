@@ -12,13 +12,10 @@ import au.com.rea.model.TerrainData;
  * @author Tony Wang
  *
  */
-public class RobotImpl implements Robot {
+public class RobotImpl extends Robot {
 	private final int STEP_SIZE = 1;
 	private final int TURNING_DEGREE = 90;
 	private final int CIRCLE = 360;
-	private int id = 0;
-	private Position position = null;
-	private TerrainData terrainData = null;
 
 	/**
 	 * Default constructor requires the position (x, y) coordinate and the
@@ -29,9 +26,9 @@ public class RobotImpl implements Robot {
 	 * @param terrainData a terrain data so the robot knows their surrounding
 	 */
 	public RobotImpl(int id, TerrainData terrainData) {
-		this.id = id;
-		this.position = new Position();
-		this.terrainData = terrainData;
+		super.id = id;
+		super.position = new Position();
+		super.terrainData = terrainData;
 	}
 
 	/**
@@ -88,15 +85,5 @@ public class RobotImpl implements Robot {
 	@Override
 	public String reportStatus() {
 		return "WALL-E says: \"I am at (" + position.getX() + ", " + position.getY() + ") facing " + position.getOrientation() + ".\"";
-	}
-
-	@Override
-	public int getId() {
-		return id;
-	}
-
-	@Override
-	public Position getPosition() {
-		return position;
 	}
 }
