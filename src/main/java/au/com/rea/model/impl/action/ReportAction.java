@@ -12,7 +12,7 @@ public class ReportAction implements Actionable {
 
 	@Override
 	public void action(Robot robot) {
-		robot.reportStatus();
+		System.out.println(robot.reportStatus());
 	}
 	
 	@Override
