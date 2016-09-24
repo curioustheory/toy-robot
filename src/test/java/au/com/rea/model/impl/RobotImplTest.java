@@ -27,7 +27,14 @@ public class RobotImplTest {
 			assert robot.getPosition().getY() == 0;
 			assert robot.getPosition().getOrientation() == Orientation.NORTH;
 
-			Position newPosition = new Position(4, 2, Orientation.SOUTH);
+			Position newPosition = new Position(0, 1, Orientation.NORTH);
+			robot.place(newPosition);
+
+			assert robot.getPosition().getX() == 0;
+			assert robot.getPosition().getY() == 1;
+			assert robot.getPosition().getOrientation() == Orientation.NORTH;
+
+			newPosition = new Position(4, 2, Orientation.SOUTH);
 			robot.place(newPosition);
 
 			assert robot.getPosition().getX() == 4;

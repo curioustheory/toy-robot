@@ -38,7 +38,7 @@ public class RobotImpl extends Robot {
 	 * @return boolean true if the position is inside the terrain boundary
 	 */
 	private boolean isInBoundary(Position position) {
-		return position.getX() < terrainData.getWidth() && position.getY() < terrainData.getHeight() && position.getX() > 0 && position.getY() > 0;
+		return position.getX() < terrainData.getWidth() && position.getY() < terrainData.getHeight() && position.getX() >= 0 && position.getY() >= 0;
 	}
 
 	@Override
