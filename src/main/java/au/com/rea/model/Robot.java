@@ -1,7 +1,5 @@
 package au.com.rea.model;
 
-import au.com.rea.exception.InvalidMovementException;
-
 /**
  * 
  * This interface allows different types of robot to be create with the same basic features 
@@ -9,39 +7,12 @@ import au.com.rea.exception.InvalidMovementException;
  * @author Tony Wang
  *
  */
-public abstract class Robot {
+public abstract class Robot implements Movable {
 	protected int id = 0;
 	protected Position position = null;
 	protected TerrainData terrainData = null;
 	protected boolean placed = false;
 	
-	/**
-	 * A setter for position object to update the position, checks the boundary first
-	 * 
-	 * @param position defines the location and orientation of the robot
-	 * @exception InvalidMovementException if the position is outside of the terrain boundaries
-	 * 
-	 */
-	public abstract void place(Position position) throws InvalidMovementException;
-	
-	/**
-	 * Moves the robot in a way specified by the robot type
-	 * 
-	 * @exception InvalidMovementException if the position is outside of the terrain boundaries
-	 * 
-	 */
-	public abstract void moveForward() throws InvalidMovementException;
-
-	/**
-	 * Turn the robot to the right specified by the robot type
-	 */
-	public abstract void turnRight();
-
-	/**
-	 * Turn the robot to the left specified by the robot type
-	 */
-	public abstract void turnLeft();
-
 	/**
 	 * Get the status of the robot
 	 * 
@@ -53,6 +24,8 @@ public abstract class Robot {
 
 	/**
 	 * Get the robot id
+	 * 
+	 * @return id
 	 */
 	public int getId() {
 		return id;
@@ -67,6 +40,11 @@ public abstract class Robot {
 		return position;
 	}
 
+	/**
+	 * This checks if the robot has been placed on the table
+	 * 
+	 * @return placed
+	 */
 	public boolean isPlaced() {
 		return placed;
 	}
