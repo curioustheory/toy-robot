@@ -18,6 +18,12 @@ The jar file is now located in **target/toyRobot.jar**
 
 ```java -jar toyRobot.jar```
 
+
+### Example
+
+1. MOVE MOVE REPORT PLACE 3,2,EAST MOVE LEFT MOVE REPORT
+2. PLACE 2,1,NORTH MOVE REPORT PLACE 4,3,SOUTH MOVE REPORT
+
 ### Robot Commands
 
 
