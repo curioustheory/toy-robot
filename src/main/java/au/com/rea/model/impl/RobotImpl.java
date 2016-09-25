@@ -43,6 +43,7 @@ public class RobotImpl extends Robot {
 
 	@Override
 	public void place(Position position) throws InvalidMovementException {
+		// validate the position whether it is in bound
 		if (isInBoundary(position)) {
 			this.position = position;
 			this.placed = true;
@@ -74,6 +75,7 @@ public class RobotImpl extends Robot {
 
 	@Override
 	public void turnRight() {
+		// turn in a clockwise rotation by the degree amount
 		position.setOrientation(Orientation.getInstance((position.getOrientation().getDegree() + TURNING_DEGREE) % CIRCLE));
 	}
 

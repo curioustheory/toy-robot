@@ -4,8 +4,17 @@ import au.com.rea.model.Actionable;
 import au.com.rea.model.Robot;
 import au.com.rea.util.RobotCommandUtil.CommandAction;
 
+/**
+ * Defines the instruction to report the status
+ * 
+ * @author Tony Wang
+ *
+ */
 public class ReportAction implements Actionable {
 
+	/**
+	 * Default constructor
+	 */
 	public ReportAction() {
 		super();
 	}

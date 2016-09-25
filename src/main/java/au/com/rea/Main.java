@@ -12,33 +12,46 @@ import au.com.rea.engine.RobotRuleEngine;
  */
 public class Main {
 	
+	/**
+	 * Default constructor
+	 */
 	public Main() {
 		super();
 	}
 	
+	/**
+	 * Start the user input listening and rule processing
+	 */
 	public void start() {
 		boolean exit = true;
 		Scanner scanner = new Scanner(System.in);
 		
 		printHeader();
 		RobotRuleEngine engine = RobotRuleEngine.getInstance();
+		// create a 5 x 5 table
 		engine.initialise(5, 5);
 
 		do {
-			System.out.println("Your wish is my command: ");
-			String action = scanner.nextLine();
+			// listens for the next user input
+			System.out.print("Your wish is my command: ");
+			String input = scanner.nextLine();
 			
-			if(action.equals("QUIT")){
+			// terminate the application when the user enters QUIT
+			if(input.equals("QUIT")){
 				exit = false;
 				scanner.close();
 				printTail();
 			} else {
-				engine.process(action);	
+				// process the user input
+				engine.process(input);	
 			}
 			System.out.println();
 		} while (exit);
 	}
 	
+	/**
+	 * Display a header and instruction
+	 */
 	private void printHeader() {
 		System.out.println("|=======================================================================================================|");
 		System.out.println("|                                                                                                       |");
@@ -65,8 +78,11 @@ public class Main {
 		System.out.println("|-------------------------------------------------------------------------------------------------------|");
 	}
 	
+	/**
+	 * Display the tail when the program quit
+	 */
 	private void printTail() {
-		System.out.println("Was I a bad robot? Good Bye Master...");
+		System.out.println("WALL-E says: \"Was I a bad robot? Good Bye Master...\"");
 		System.out.println("|-------------------------------------------------------------------------------------------------------|");
 	}
 	

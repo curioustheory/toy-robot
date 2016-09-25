@@ -22,36 +22,65 @@ import au.com.rea.model.impl.action.RightAction;
  *
  */
 public class RobotCommandUtil {
+	// checks the command patter that only takes in capital letters
 	private static Pattern patternWord = Pattern.compile("[A-Z]*");
+	// checks the position pattern that takes in a number folowed by a comma then another number then another comma then capital letters 
 	private static Pattern patternPosition = Pattern.compile("[0-9]*,[0-9]*,[A-Z]*");
 
+	/**
+	 * CommandAction type that defines all available command for the robot
+	 * 
+	 * @author Tony Wang
+	 *
+	 */
 	public enum CommandAction {
 		PLACE, MOVE, LEFT, RIGHT, REPORT
 	}
 
+	/**
+	 * Return a list of actionable commands that has been processed
+	 * 
+	 * @param input user commands
+	 * @return queue
+	 */
 	public static Queue<Actionable> processCommandInput(String input) {
 		Queue<Actionable> queue = new LinkedList<>();
 		validCommandAndCreateAction(queue, input);
 		return queue;
 	}
 
+	/**
+	 * 
+	 * The is a recursive string parser and validator to check if the input has the correct format and then add it to the queue 
+	 * 
+	 * @param queue
+	 * @param input
+	 * @throws IllegalArgumentException
+	 */
 	private static void validCommandAndCreateAction(Queue<Actionable> queue, String input) throws IllegalArgumentException {
 		if (!input.isEmpty()) {
+			// check PLACE command to take in additional argument
 			if (input.startsWith(CommandAction.PLACE.name())) {
+				// separate the input into 3 segments
 				String[] words = input.trim().split(" ", 3);
+				// check if the first segment is correct and the associated argument is correct
 				if (patternWord.matcher(words[0].trim()).matches() && patternPosition.matcher(words[1].trim()).matches()) {
 					queue.add(createAction(words[0], words[1]));
 					if (words.length > 2) {
+						// send the last segment to be validated again recursively
 						validCommandAndCreateAction(queue, words[2].trim());
 					}
 				} else {
 					throw new IllegalArgumentException("Unknown command: " + words[0] + " " + words[1]);
 				}
+			// check every other commands
 			} else {
+				// separate the input into 2 segments
 				String[] words = input.trim().split(" ", 2);
 				if (patternWord.matcher(words[0].trim()).matches()) {
 					queue.add(createAction(words[0], ""));
 					if (words.length > 1) {
+						// send the last segment to be validated again recursively
 						validCommandAndCreateAction(queue, words[1].trim());
 					}
 				} else {
@@ -61,6 +90,14 @@ public class RobotCommandUtil {
 		}
 	}
 
+	/**
+	 * Checks the command and map it to an actionable object
+	 * 
+	 * @param action user action
+	 * @param args additional argument for the action
+	 * @return Actionable
+	 * @throws IllegalArgumentException
+	 */
 	private static Actionable createAction(String action, String args) throws IllegalArgumentException {
 		switch (CommandAction.valueOf(action)) {
 		case PLACE:

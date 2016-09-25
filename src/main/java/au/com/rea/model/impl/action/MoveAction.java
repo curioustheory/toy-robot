@@ -5,6 +5,12 @@ import au.com.rea.model.Actionable;
 import au.com.rea.model.Robot;
 import au.com.rea.util.RobotCommandUtil.CommandAction;
 
+/**
+ * Defines the instruction to move forward
+ * 
+ * @author Tony Wang
+ *
+ */
 public class MoveAction implements Actionable {
 
 	public MoveAction() {

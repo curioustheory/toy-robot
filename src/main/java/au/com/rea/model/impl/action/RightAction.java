@@ -4,8 +4,17 @@ import au.com.rea.model.Actionable;
 import au.com.rea.model.Robot;
 import au.com.rea.util.RobotCommandUtil.CommandAction;
 
+/**
+ * Defines the instruction to turn left
+ * 
+ * @author Tony Wang
+ *
+ */
 public class RightAction implements Actionable {
 
+	/**
+	 * Default constructor
+	 */
 	public RightAction() {
 		super();
 	}

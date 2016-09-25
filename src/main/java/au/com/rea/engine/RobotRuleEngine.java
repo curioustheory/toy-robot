@@ -12,6 +12,8 @@ import au.com.rea.util.RobotCommandUtil;
 import au.com.rea.util.RobotCommandUtil.CommandAction;
 
 /**
+ * A singleton object that acts as the controller of the application that
+ * processes and coordinate all events
  * 
  * @author Tony Wang
  *
@@ -22,12 +24,19 @@ public class RobotRuleEngine {
 	private TerrainData terrainData = null;
 	private Robot robot = null;
 
-	// private constructor to prevent instantiation by other classes
+	/**
+	 * private constructor to prevent instantiation by other classes
+	 */
 	private RobotRuleEngine() {
 		super();
 	}
 
-	// allows singleton object, only one robot
+	/**
+	 * 
+	 * Returns a singleton object of only one engine
+	 * 
+	 * @return instance
+	 */
 	public static RobotRuleEngine getInstance() {
 		if (instance == null) {
 			instance = new RobotRuleEngine();
@@ -35,15 +44,25 @@ public class RobotRuleEngine {
 		return instance;
 	}
 
-	// create the table and the robot
+	/**
+	 * Initialise the environment by creating the table and the robot
+	 * 
+	 * @param tableWidth
+	 * @param tableHeight
+	 */
 	public void initialise(int tableWidth, int tableHeight) {
 		terrainData = new TerrainData(tableWidth, tableHeight);
 		robot = new RobotImpl(1, terrainData);
 	}
 
-	public void process(String action) {
+	/**
+	 * 
+	 * @param action
+	 */
+	public void process(String input) {
 		try {
-			Queue<Actionable> actionQueue = RobotCommandUtil.processCommandInput(action);
+			// process the input commands
+			Queue<Actionable> actionQueue = RobotCommandUtil.processCommandInput(input);
 
 			while (!actionQueue.isEmpty()) {
 				Actionable doSomething = actionQueue.poll();
@@ -53,14 +72,25 @@ public class RobotRuleEngine {
 				}
 			}
 		} catch (Exception e) {
+			// logs exception when something goes wrong
 			logger.error(e.getMessage());
 		}
 	}
 
+	/**
+	 * Get the Robot object
+	 * 
+	 * @return robot
+	 */
 	public Robot getRobot() {
 		return robot;
 	}
 
+	/**
+	 * Get the terrain data object
+	 * 
+	 * @return terrainData
+	 */
 	public TerrainData getTerrainData() {
 		return terrainData;
 	}
