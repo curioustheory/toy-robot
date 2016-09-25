@@ -1,6 +1,5 @@
 package au.com.rea.engine;
 
-import java.util.LinkedList;
 import java.util.Queue;
 
 import org.apache.log4j.Logger;
@@ -44,11 +43,9 @@ public class RobotRuleEngine {
 
 	public void process(String action) {
 		try {
-			Queue<Actionable> actionQueue = new LinkedList<>();
-			RobotCommandUtil.validCommandAndCreateAction(actionQueue, action);
+			Queue<Actionable> actionQueue = RobotCommandUtil.processCommandInput(action);
 
 			while (!actionQueue.isEmpty()) {
-
 				Actionable doSomething = actionQueue.poll();
 				// filter out all command before the PLACE command is issued
 				if (robot.isPlaced() || doSomething.getAction() == CommandAction.PLACE) {

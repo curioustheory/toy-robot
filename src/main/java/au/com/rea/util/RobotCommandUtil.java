@@ -1,5 +1,6 @@
 package au.com.rea.util;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,9 @@ import au.com.rea.model.impl.action.RightAction;
 
 /**
  * 
+ * This RobotCommandUtil takes in a input string and validate the command and
+ * then returns a queue with all the actionable objects
+ * 
  * @author Tony Wang
  *
  */
@@ -25,7 +29,13 @@ public class RobotCommandUtil {
 		PLACE, MOVE, LEFT, RIGHT, REPORT
 	}
 
-	public static void validCommandAndCreateAction(Queue<Actionable> queue, String input) throws IllegalArgumentException {
+	public static Queue<Actionable> processCommandInput(String input) {
+		Queue<Actionable> queue = new LinkedList<>();
+		validCommandAndCreateAction(queue, input);
+		return queue;
+	}
+
+	private static void validCommandAndCreateAction(Queue<Actionable> queue, String input) throws IllegalArgumentException {
 		if (!input.isEmpty()) {
 			if (input.startsWith(CommandAction.PLACE.name())) {
 				String[] words = input.trim().split(" ", 3);
@@ -57,12 +67,12 @@ public class RobotCommandUtil {
 			// separate the coordinates
 			String[] coord = args.split(",");
 			Position position;
-			try{
+			try {
 				int x = Integer.parseInt(coord[0]);
 				int y = Integer.parseInt(coord[1]);
 				Orientation o = Orientation.valueOf(coord[2]);
 				position = new Position(x, y, o);
-			} catch(IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException("Unknown command: " + coord[2]);
 			}
 			return new PlaceAction(position);
