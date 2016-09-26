@@ -2,6 +2,7 @@ package au.com.rea.model.impl.action;
 
 import au.com.rea.exception.InvalidMovementException;
 import au.com.rea.model.Actionable;
+import au.com.rea.model.Movable;
 import au.com.rea.model.Position;
 import au.com.rea.model.Robot;
 import au.com.rea.util.RobotCommandUtil.CommandAction;
@@ -24,8 +25,11 @@ public class PlaceAction implements Actionable {
 	}
 
 	@Override
-	public void action(Robot robot) throws InvalidMovementException {
-		robot.place(position);
+	public void action(Movable movable) throws InvalidMovementException {
+		if (movable instanceof Robot) {
+			Robot robot = (Robot) movable;
+			robot.place(position);	
+		}
 	}
 	
 	@Override

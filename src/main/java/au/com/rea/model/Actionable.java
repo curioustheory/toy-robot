@@ -11,12 +11,12 @@ import au.com.rea.util.RobotCommandUtil.CommandAction;
  */
 public interface Actionable {
 	/**
-	 * Calls the robot action according to the CommandAction type
+	 * Calls the action according to the CommandAction type
 	 * 
-	 * @param robot
+	 * @param movable
 	 * @throws InvalidMovementException
 	 */
-	public void action(Robot robot) throws InvalidMovementException;
+	public void action(Movable movable) throws InvalidMovementException;
 	
 	/**
 	 * Get the CommandAction type
